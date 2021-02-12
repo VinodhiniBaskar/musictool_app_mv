@@ -1,0 +1,1440 @@
+{
+      "OriginalResponse": {
+            "input_uri": "/machine-vantage-inc-video/57738bf96b7243999bd45808f654f1e0.mp4",
+            "segment": {
+                  "start_time_offset": {},
+                  "end_time_offset": {
+                        "seconds": 20,
+                        "nanos": 0
+                  }
+            },
+            "logo_recognition_annotations": [
+                  {
+                        "entity": {
+                              "entity_id": "/m/01jvjf",
+                              "description": "Unilever",
+                              "language_code": "en-US"
+                        },
+                        "tracks": [
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "nanos": 0,
+                                                "seconds": 0
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 3,
+                                                "nanos": 120000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4487842917442322,
+                                                      "top": 0.3514787256717682,
+                                                      "right": 0.5457109212875366,
+                                                      "bottom": 0.44994881749153137
+                                                },
+                                                "time_offset": {}
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44881725311279297,
+                                                      "top": 0.35153719782829285,
+                                                      "right": 0.5456991195678711,
+                                                      "bottom": 0.44999343156814575
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 120000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4490225315093994,
+                                                      "top": 0.35157182812690735,
+                                                      "right": 0.5457167029380798,
+                                                      "bottom": 0.4501478672027588
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 240000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.449457585811615,
+                                                      "top": 0.35160988569259644,
+                                                      "right": 0.5457596778869629,
+                                                      "bottom": 0.450194776058197
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 360000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44677916169166565,
+                                                      "top": 0.3490435481071472,
+                                                      "right": 0.5473752021789551,
+                                                      "bottom": 0.4527815282344818
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 480000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4461394250392914,
+                                                      "top": 0.3487182855606079,
+                                                      "right": 0.547144889831543,
+                                                      "bottom": 0.45257019996643066
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 600000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4462510347366333,
+                                                      "top": 0.3488324284553528,
+                                                      "right": 0.5465342998504639,
+                                                      "bottom": 0.45203912258148193
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 720000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4461391866207123,
+                                                      "top": 0.34896552562713623,
+                                                      "right": 0.5467674136161804,
+                                                      "bottom": 0.45241668820381165
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 840000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4465508460998535,
+                                                      "top": 0.3505062162876129,
+                                                      "right": 0.5461757779121399,
+                                                      "bottom": 0.45146894454956055
+                                                },
+                                                "time_offset": {
+                                                      "nanos": 960000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4464886486530304,
+                                                      "top": 0.35055768489837646,
+                                                      "right": 0.5462214946746826,
+                                                      "bottom": 0.45153477787971497
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 80000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4465373754501343,
+                                                      "top": 0.35088348388671875,
+                                                      "right": 0.5461995005607605,
+                                                      "bottom": 0.4511524438858032
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 200000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44662347435951233,
+                                                      "top": 0.3507692217826843,
+                                                      "right": 0.5462156534194946,
+                                                      "bottom": 0.4509781002998352
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 320000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4467146396636963,
+                                                      "top": 0.35074374079704285,
+                                                      "right": 0.5461388826370239,
+                                                      "bottom": 0.45070430636405945
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 440000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.446730375289917,
+                                                      "top": 0.3506997525691986,
+                                                      "right": 0.5460996627807617,
+                                                      "bottom": 0.450643926858902
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 560000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44672322273254395,
+                                                      "top": 0.3506922721862793,
+                                                      "right": 0.5460906028747559,
+                                                      "bottom": 0.4506358802318573
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 680000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44672173261642456,
+                                                      "top": 0.3506961762905121,
+                                                      "right": 0.546101450920105,
+                                                      "bottom": 0.4506370425224304
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 800000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44673892855644226,
+                                                      "top": 0.35070765018463135,
+                                                      "right": 0.546082079410553,
+                                                      "bottom": 0.4506358802318573
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 1,
+                                                      "nanos": 920000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44673895835876465,
+                                                      "top": 0.3507135212421417,
+                                                      "right": 0.5460808277130127,
+                                                      "bottom": 0.45064133405685425
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 40000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44673874974250793,
+                                                      "top": 0.35071733593940735,
+                                                      "right": 0.5460805892944336,
+                                                      "bottom": 0.4506451189517975
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 160000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.44673871994018555,
+                                                      "top": 0.3507191836833954,
+                                                      "right": 0.5460805892944336,
+                                                      "bottom": 0.4506469666957855
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 280000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4473203420639038,
+                                                      "top": 0.35103029012680054,
+                                                      "right": 0.5461692810058594,
+                                                      "bottom": 0.4501881003379822
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 400000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4474966824054718,
+                                                      "top": 0.35100609064102173,
+                                                      "right": 0.5463289022445679,
+                                                      "bottom": 0.45013701915740967
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 520000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4475502073764801,
+                                                      "top": 0.35099437832832336,
+                                                      "right": 0.5463818311691284,
+                                                      "bottom": 0.4501243829727173
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 640000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4475470185279846,
+                                                      "top": 0.3509948253631592,
+                                                      "right": 0.5463786125183105,
+                                                      "bottom": 0.4501248002052307
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 760000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4475264847278595,
+                                                      "top": 0.35099926590919495,
+                                                      "right": 0.5463581085205078,
+                                                      "bottom": 0.4501292407512665
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 2,
+                                                      "nanos": 880000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4475075602531433,
+                                                      "top": 0.3510034382343292,
+                                                      "right": 0.5463391542434692,
+                                                      "bottom": 0.45013341307640076
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 3
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4474959373474121,
+                                                      "top": 0.35100603103637695,
+                                                      "right": 0.5463275909423828,
+                                                      "bottom": 0.4501360058784485
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 3,
+                                                      "nanos": 120000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.951801061630249
+                              },
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "seconds": 11,
+                                                "nanos": 880000000
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 13,
+                                                "nanos": 200000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4460732340812683,
+                                                      "top": 0.29741379618644714,
+                                                      "right": 0.5415920615196228,
+                                                      "bottom": 0.4597156345844269
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 11,
+                                                      "nanos": 880000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4470766484737396,
+                                                      "top": 0.3172578811645508,
+                                                      "right": 0.5525912046432495,
+                                                      "bottom": 0.48163601756095886
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.45040979981422424,
+                                                      "top": 0.3371143937110901,
+                                                      "right": 0.5488241314888,
+                                                      "bottom": 0.4902605414390564
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 120000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4519311189651489,
+                                                      "top": 0.35886722803115845,
+                                                      "right": 0.5459952354431152,
+                                                      "bottom": 0.5030429363250732
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 240000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.45620426535606384,
+                                                      "top": 0.3758368194103241,
+                                                      "right": 0.5444372296333313,
+                                                      "bottom": 0.5105502605438232
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 360000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4594177007675171,
+                                                      "top": 0.38758301734924316,
+                                                      "right": 0.5423249006271362,
+                                                      "bottom": 0.5166308879852295
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 480000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4595707952976227,
+                                                      "top": 0.3902158737182617,
+                                                      "right": 0.542835533618927,
+                                                      "bottom": 0.518203854560852
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 600000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4596346616744995,
+                                                      "top": 0.3894795775413513,
+                                                      "right": 0.5428824424743652,
+                                                      "bottom": 0.5177308917045593
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 720000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.45959702134132385,
+                                                      "top": 0.3880014717578888,
+                                                      "right": 0.542729377746582,
+                                                      "bottom": 0.5168617963790894
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 840000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4594883322715759,
+                                                      "top": 0.3871600925922394,
+                                                      "right": 0.5426656007766724,
+                                                      "bottom": 0.5153988599777222
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 12,
+                                                      "nanos": 960000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4593757092952728,
+                                                      "top": 0.3859837055206299,
+                                                      "right": 0.5428279042243958,
+                                                      "bottom": 0.5150474905967712
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 80000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.4595705568790436,
+                                                      "top": 0.3858153522014618,
+                                                      "right": 0.5425551533699036,
+                                                      "bottom": 0.5144355297088623
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 200000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.9456233382225037
+                              },
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "seconds": 17,
+                                                "nanos": 640000000
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 19,
+                                                "nanos": 920000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6105629205703735,
+                                                      "top": 0.43055465817451477,
+                                                      "right": 0.6874879598617554,
+                                                      "bottom": 0.5519856214523315
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 640000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6105227470397949,
+                                                      "top": 0.42812034487724304,
+                                                      "right": 0.6879321336746216,
+                                                      "bottom": 0.5518012642860413
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 760000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6117427349090576,
+                                                      "top": 0.42969778180122375,
+                                                      "right": 0.6889989376068115,
+                                                      "bottom": 0.5499728322029114
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 880000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6130503416061401,
+                                                      "top": 0.42988643050193787,
+                                                      "right": 0.6897291541099548,
+                                                      "bottom": 0.5503990054130554
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6135488748550415,
+                                                      "top": 0.4276810586452484,
+                                                      "right": 0.690110445022583,
+                                                      "bottom": 0.5511947870254517
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 120000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.613535463809967,
+                                                      "top": 0.4284280240535736,
+                                                      "right": 0.6922144889831543,
+                                                      "bottom": 0.5502068400382996
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 240000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6145628094673157,
+                                                      "top": 0.42884963750839233,
+                                                      "right": 0.6920406818389893,
+                                                      "bottom": 0.5498397350311279
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 360000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6153126358985901,
+                                                      "top": 0.42843374609947205,
+                                                      "right": 0.692443311214447,
+                                                      "bottom": 0.5495444536209106
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 480000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6162235736846924,
+                                                      "top": 0.42923274636268616,
+                                                      "right": 0.6930927634239197,
+                                                      "bottom": 0.5495683550834656
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 600000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6168755888938904,
+                                                      "top": 0.429331511259079,
+                                                      "right": 0.6939257383346558,
+                                                      "bottom": 0.5502746105194092
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 720000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6171969771385193,
+                                                      "top": 0.4291762709617615,
+                                                      "right": 0.6951737999916077,
+                                                      "bottom": 0.5493570566177368
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 840000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.617838442325592,
+                                                      "top": 0.42877233028411865,
+                                                      "right": 0.6953980326652527,
+                                                      "bottom": 0.5486130714416504
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 960000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.617986798286438,
+                                                      "top": 0.4264987111091614,
+                                                      "right": 0.6970275640487671,
+                                                      "bottom": 0.5492533445358276
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 80000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6186795830726624,
+                                                      "top": 0.4255973696708679,
+                                                      "right": 0.6980435848236084,
+                                                      "bottom": 0.5488454103469849
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 200000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6191167831420898,
+                                                      "top": 0.4254814088344574,
+                                                      "right": 0.6991214752197266,
+                                                      "bottom": 0.5483390092849731
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 320000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6189692616462708,
+                                                      "top": 0.42383360862731934,
+                                                      "right": 0.6999514698982239,
+                                                      "bottom": 0.5486952066421509
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 440000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6196203231811523,
+                                                      "top": 0.4242294132709503,
+                                                      "right": 0.7000649571418762,
+                                                      "bottom": 0.5493793487548828
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 560000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6201234459877014,
+                                                      "top": 0.42442211508750916,
+                                                      "right": 0.7007086873054504,
+                                                      "bottom": 0.5496801137924194
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 680000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6204736232757568,
+                                                      "top": 0.4249228537082672,
+                                                      "right": 0.7016708254814148,
+                                                      "bottom": 0.5498874187469482
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 800000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.6206259727478027,
+                                                      "top": 0.42362070083618164,
+                                                      "right": 0.7021899223327637,
+                                                      "bottom": 0.5506176948547363
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 920000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.9457345008850098
+                              },
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "seconds": 17,
+                                                "nanos": 640000000
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 19,
+                                                "nanos": 920000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.531143069267273,
+                                                      "top": 0.5074340105056763,
+                                                      "right": 0.6023107767105103,
+                                                      "bottom": 0.6069257259368896
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 640000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.530971109867096,
+                                                      "top": 0.5071926712989807,
+                                                      "right": 0.6030950546264648,
+                                                      "bottom": 0.6072518825531006
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 760000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5309563279151917,
+                                                      "top": 0.5073436498641968,
+                                                      "right": 0.6038841605186462,
+                                                      "bottom": 0.6067854166030884
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 17,
+                                                      "nanos": 880000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5309978723526001,
+                                                      "top": 0.5079147219657898,
+                                                      "right": 0.6040772795677185,
+                                                      "bottom": 0.6062448620796204
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.531208872795105,
+                                                      "top": 0.508173406124115,
+                                                      "right": 0.6040464043617249,
+                                                      "bottom": 0.6058631539344788
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 120000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5313847661018372,
+                                                      "top": 0.5084649324417114,
+                                                      "right": 0.6040465831756592,
+                                                      "bottom": 0.6049495935440063
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 240000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5311954617500305,
+                                                      "top": 0.5086317658424377,
+                                                      "right": 0.6045928001403809,
+                                                      "bottom": 0.6056450605392456
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 360000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5312384366989136,
+                                                      "top": 0.5085117220878601,
+                                                      "right": 0.6050854921340942,
+                                                      "bottom": 0.606614887714386
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 480000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5312511324882507,
+                                                      "top": 0.5080905556678772,
+                                                      "right": 0.6052671670913696,
+                                                      "bottom": 0.6072911024093628
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 600000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5310234427452087,
+                                                      "top": 0.5071095824241638,
+                                                      "right": 0.6063129901885986,
+                                                      "bottom": 0.6084089279174805
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 720000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5312795639038086,
+                                                      "top": 0.506510317325592,
+                                                      "right": 0.6070695519447327,
+                                                      "bottom": 0.6094101667404175
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 840000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5317399501800537,
+                                                      "top": 0.5073858499526978,
+                                                      "right": 0.6073389649391174,
+                                                      "bottom": 0.6082332134246826
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 960000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5315260887145996,
+                                                      "top": 0.5062826871871948,
+                                                      "right": 0.6082460880279541,
+                                                      "bottom": 0.6086269021034241
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 80000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5316552519798279,
+                                                      "top": 0.5062626600265503,
+                                                      "right": 0.6089840531349182,
+                                                      "bottom": 0.6080137491226196
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 200000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5318102836608887,
+                                                      "top": 0.5065401196479797,
+                                                      "right": 0.6095424890518188,
+                                                      "bottom": 0.607693612575531
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 320000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5320824980735779,
+                                                      "top": 0.5063250064849854,
+                                                      "right": 0.6100487112998962,
+                                                      "bottom": 0.6080015897750854
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 440000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.532383918762207,
+                                                      "top": 0.5063333511352539,
+                                                      "right": 0.6102848649024963,
+                                                      "bottom": 0.6080283522605896
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 560000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5319518446922302,
+                                                      "top": 0.5053420662879944,
+                                                      "right": 0.6109912395477295,
+                                                      "bottom": 0.6088340878486633
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 680000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5320308208465576,
+                                                      "top": 0.5053858160972595,
+                                                      "right": 0.6110968589782715,
+                                                      "bottom": 0.6086716055870056
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 800000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.5316494703292847,
+                                                      "top": 0.5045132040977478,
+                                                      "right": 0.6115972399711609,
+                                                      "bottom": 0.6091645956039429
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 920000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.9457345008850098
+                              },
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "seconds": 18,
+                                                "nanos": 120000000
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 19,
+                                                "nanos": 920000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7475417256355286,
+                                                      "top": 0.09017443656921387,
+                                                      "right": 0.8170589804649353,
+                                                      "bottom": 0.1901676058769226
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 120000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7465294003486633,
+                                                      "top": 0.09139539301395416,
+                                                      "right": 0.8181565403938293,
+                                                      "bottom": 0.21354487538337708
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 240000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.748526394367218,
+                                                      "top": 0.09040822833776474,
+                                                      "right": 0.8157026171684265,
+                                                      "bottom": 0.21522493660449982
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 360000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7457186579704285,
+                                                      "top": 0.09145566076040268,
+                                                      "right": 0.8163602352142334,
+                                                      "bottom": 0.2214878797531128
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 480000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7407159805297852,
+                                                      "top": 0.0645207017660141,
+                                                      "right": 0.818964421749115,
+                                                      "bottom": 0.2332952618598938
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 600000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7403072714805603,
+                                                      "top": 0.06329412758350372,
+                                                      "right": 0.8178405165672302,
+                                                      "bottom": 0.23035575449466705
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 720000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7458957433700562,
+                                                      "top": 0.08723992109298706,
+                                                      "right": 0.8157973885536194,
+                                                      "bottom": 0.2217714786529541
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 840000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7477732300758362,
+                                                      "top": 0.0920870304107666,
+                                                      "right": 0.8165372610092163,
+                                                      "bottom": 0.2253599762916565
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 18,
+                                                      "nanos": 960000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7481788992881775,
+                                                      "top": 0.09342838823795319,
+                                                      "right": 0.8170436024665833,
+                                                      "bottom": 0.22687293589115143
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 80000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7482569217681885,
+                                                      "top": 0.09361773729324341,
+                                                      "right": 0.8171291351318359,
+                                                      "bottom": 0.2269766628742218
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 200000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7481846213340759,
+                                                      "top": 0.09337059408426285,
+                                                      "right": 0.8170105814933777,
+                                                      "bottom": 0.22665193676948547
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 320000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7480753660202026,
+                                                      "top": 0.09299071878194809,
+                                                      "right": 0.8168970346450806,
+                                                      "bottom": 0.22631505131721497
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 440000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.74801105260849,
+                                                      "top": 0.0927729606628418,
+                                                      "right": 0.8167842626571655,
+                                                      "bottom": 0.22604279220104218
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 560000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7479103207588196,
+                                                      "top": 0.09258326143026352,
+                                                      "right": 0.816769540309906,
+                                                      "bottom": 0.22606778144836426
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 680000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7479158043861389,
+                                                      "top": 0.09257874637842178,
+                                                      "right": 0.8167244791984558,
+                                                      "bottom": 0.22603711485862732
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 800000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.7478981018066406,
+                                                      "top": 0.09255632758140564,
+                                                      "right": 0.8167446255683899,
+                                                      "bottom": 0.22613348066806793
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 19,
+                                                      "nanos": 920000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.9031081795692444
+                              }
+                        ],
+                        "segments": [
+                              {
+                                    "start_time_offset": {
+                                          "seconds": 11,
+                                          "nanos": 880000000
+                                    },
+                                    "end_time_offset": {
+                                          "seconds": 13,
+                                          "nanos": 200000000
+                                    }
+                              },
+                              {
+                                    "start_time_offset": {
+                                          "seconds": 17,
+                                          "nanos": 640000000
+                                    },
+                                    "end_time_offset": {
+                                          "seconds": 19,
+                                          "nanos": 920000000
+                                    }
+                              }
+                        ]
+                  },
+                  {
+                        "entity": {
+                              "entity_id": "/m/02qpm8",
+                              "description": "Oregon Public Broadcasting",
+                              "language_code": "en-US"
+                        },
+                        "tracks": [
+                              {
+                                    "segment": {
+                                          "start_time_offset": {
+                                                "seconds": 13,
+                                                "nanos": 320000000
+                                          },
+                                          "end_time_offset": {
+                                                "seconds": 14,
+                                                "nanos": 760000000
+                                          }
+                                    },
+                                    "timestamped_objects": [
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.23610514402389526,
+                                                      "top": 0.009022265672683716,
+                                                      "right": 0.8861953616142273,
+                                                      "bottom": 0.9830003976821899
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 320000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.24212656915187836,
+                                                      "top": 0.012019363231956959,
+                                                      "right": 0.8843392729759216,
+                                                      "bottom": 0.9860376119613647
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 440000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.2332855612039566,
+                                                      "top": 0.004878103733062744,
+                                                      "right": 0.873525857925415,
+                                                      "bottom": 0.9830743074417114
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 560000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.23073144257068634,
+                                                      "top": 0.007238151039928198,
+                                                      "right": 0.8841410875320435,
+                                                      "bottom": 0.9832322597503662
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 680000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.23482359945774078,
+                                                      "top": 0.005251673050224781,
+                                                      "right": 0.8751672506332397,
+                                                      "bottom": 0.9844762682914734
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 800000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.22894421219825745,
+                                                      "top": 0.0033308472484350204,
+                                                      "right": 0.8789224624633789,
+                                                      "bottom": 0.9834668040275574
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 13,
+                                                      "nanos": 920000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.2284211367368698,
+                                                      "top": 0.001191492541693151,
+                                                      "right": 0.8611100316047668,
+                                                      "bottom": 0.9813165068626404
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 40000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.22133620083332062,
+                                                      "top": -0.0003937071596737951,
+                                                      "right": 0.8785229921340942,
+                                                      "bottom": 0.9887362122535706
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 160000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.2286423146724701,
+                                                      "top": 0.004511920735239983,
+                                                      "right": 0.8711926937103271,
+                                                      "bottom": 0.9824528694152832
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 280000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.22768566012382507,
+                                                      "top": 0.000548678741324693,
+                                                      "right": 0.8925985097885132,
+                                                      "bottom": 0.9881094694137573
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 400000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.22960467636585236,
+                                                      "top": -0.0006352112395688891,
+                                                      "right": 0.9038222432136536,
+                                                      "bottom": 0.9932138323783875
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 520000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.24424754083156586,
+                                                      "top": 0.0008714149589650333,
+                                                      "right": 0.9039008021354675,
+                                                      "bottom": 0.9903689026832581
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 640000000
+                                                }
+                                          },
+                                          {
+                                                "normalized_bounding_box": {
+                                                      "left": 0.24958087503910065,
+                                                      "top": -0.0009737443760968745,
+                                                      "right": 0.935583233833313,
+                                                      "bottom": 0.9973456859588623
+                                                },
+                                                "time_offset": {
+                                                      "seconds": 14,
+                                                      "nanos": 760000000
+                                                }
+                                          }
+                                    ],
+                                    "confidence": 0.9065209627151489
+                              }
+                        ],
+                        "segments": [
+                              {
+                                    "start_time_offset": {
+                                          "seconds": 13,
+                                          "nanos": 320000000
+                                    },
+                                    "end_time_offset": {
+                                          "seconds": 14,
+                                          "nanos": 760000000
+                                    }
+                              }
+                        ]
+                  }
+            ]
+      },
+      "BrandsCount": 2,
+      "LogoInterruptsNarrative": true,
+      "FoundScenario": true
+}

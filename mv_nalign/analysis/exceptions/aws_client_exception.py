@@ -1,0 +1,2 @@
+class AwsOperationFailedException(BaseException):
+    pass

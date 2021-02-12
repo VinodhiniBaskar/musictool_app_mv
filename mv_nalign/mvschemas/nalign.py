@@ -38,7 +38,7 @@ from mv_nalign import settings
 from mv_nalign.api import utils
 from mv_nalign.utility import upload_to_s3,object_detection,detect_text,upload_to_gcp
 from mv_nalign.utility.src.aws_helper_service import AwsHelperService
-from mv_nalign.analysis import analysis,analysis_main
+# from mv_nalign.analysis import analysis,analysis_main
 from pymongo import MongoClient
 import threading
 from PIL import Image
@@ -48,16 +48,16 @@ from humanfriendly import format_timespan
 from google.cloud import storage
 import concurrent.futures as fu
 from mv_nalign.analysis.src.aws_helper_service import AwsHelperService
-from mv_nalign.analysis.src.principle.gaze import gaze
-from mv_nalign.analysis.src.principle.text_position import text_over_face, text_relative_position
-from mv_nalign.analysis.src.principle.numerosity import numerosity_principle
-from mv_nalign.analysis.src.principle.background import background_principle
-from mv_nalign.analysis.src.principle.variation import variation_in_terrain
-from mv_nalign.analysis.src.principle.body_parts import body_parts
-from mv_nalign.analysis.src.principle.logo import logo
-from mv_nalign.analysis.src.principle.humanity import humanity_focused as hf, close_proximity as cp, family_interactions as fm, \
-    women_close_proximity as wcp
-from mv_nalign.analysis.src.data_preloader import PreLoader
+# from mv_nalign.analysis.src.principle.gaze import gaze
+# from mv_nalign.analysis.src.principle.text_position import text_over_face, text_relative_position
+# from mv_nalign.analysis.src.principle.numerosity import numerosity_principle
+# from mv_nalign.analysis.src.principle.background import background_principle
+# from mv_nalign.analysis.src.principle.variation import variation_in_terrain
+# from mv_nalign.analysis.src.principle.body_parts import body_parts
+# from mv_nalign.analysis.src.principle.logo import logo
+# from mv_nalign.analysis.src.principle.humanity import humanity_focused as hf, close_proximity as cp, family_interactions as fm, \
+#     women_close_proximity as wcp
+# from mv_nalign.analysis.src.data_preloader import PreLoader
 from werkzeug.utils import secure_filename
 # from dotenv import load_dotenv
 # load_dotenv() 
@@ -458,367 +458,367 @@ class NAlignSetFactory(object):
 
         return settings.BASE_MEDIA_PATH+thumbnail_file_name+'@'+str(width)+','+str(height)
 
-    def generate_impacts(self,project_id):
-        proj_obj=self.get_by_id(project_id)
-        file_type = proj_obj.file_type
-        yt_downloads = ''
-        video_not_yt_download = proj_obj.file_url.split('.')[0]
-        title_file_name = proj_obj.name
-        print(title_file_name)
-        created_at = proj_obj.created_at
-        print(created_at)
-        if file_type=="video": 
-            if video_not_yt_download != 'https://machine-vantage-inc-video':
-                yt_downloads = self.download_youtube_video(proj_obj.file_url,project_id,file_type)
-            else:
-                yt_downloads = proj_obj.file_url
-                print("video downloaded")
-            if  not proj_obj.is_uploaded:
-                if yt_downloads:
-                    proj_obj.is_uploaded=True
-                    proj_obj.save()
-                    file_name_url=yt_downloads
-                    file_name_url=file_name_url.split('/')[-1]
-            elif proj_obj.is_uploaded:
-                proj_obj.is_uploaded=True
-                proj_obj.save()
-                file_name_url=yt_downloads
-                file_name_url=file_name_url.split('/')[-1]
-            bucket=settings.VIDEO_BUCKET_NAME
-        else:
-            file_name_url = proj_obj.file_url.split('/')[-1]
-            bucket=settings.IMAGE_BUCKET_NAME
+    # def generate_impacts(self,project_id):
+    #     proj_obj=self.get_by_id(project_id)
+    #     file_type = proj_obj.file_type
+    #     yt_downloads = ''
+    #     video_not_yt_download = proj_obj.file_url.split('.')[0]
+    #     title_file_name = proj_obj.name
+    #     print(title_file_name)
+    #     created_at = proj_obj.created_at
+    #     print(created_at)
+    #     if file_type=="video": 
+    #         if video_not_yt_download != 'https://machine-vantage-inc-video':
+    #             yt_downloads = self.download_youtube_video(proj_obj.file_url,project_id,file_type)
+    #         else:
+    #             yt_downloads = proj_obj.file_url
+    #             print("video downloaded")
+    #         if  not proj_obj.is_uploaded:
+    #             if yt_downloads:
+    #                 proj_obj.is_uploaded=True
+    #                 proj_obj.save()
+    #                 file_name_url=yt_downloads
+    #                 file_name_url=file_name_url.split('/')[-1]
+    #         elif proj_obj.is_uploaded:
+    #             proj_obj.is_uploaded=True
+    #             proj_obj.save()
+    #             file_name_url=yt_downloads
+    #             file_name_url=file_name_url.split('/')[-1]
+    #         bucket=settings.VIDEO_BUCKET_NAME
+    #     else:
+    #         file_name_url = proj_obj.file_url.split('/')[-1]
+    #         bucket=settings.IMAGE_BUCKET_NAME
 
-        neuro = NeuroAnalysis.objects(ref_id=project_id).first()
-        if not neuro:
-            payload = {}
-            payload["db_id"] = uuid.uuid4().hex
-            payload["ref_id"] = project_id
-            payload["file_name"]=file_name_url
-            payload["title_name"] = title_file_name
-            payload["created_at"]= created_at
-            payload["violation_status"]= 'Processing'
-            payload["file_type"] = file_type
-            neuro,error = NeuroAnalysisSchema().load(payload)
-            print("im error",error)
-            neuro.save()
+    #     neuro = NeuroAnalysis.objects(ref_id=project_id).first()
+    #     if not neuro:
+    #         payload = {}
+    #         payload["db_id"] = uuid.uuid4().hex
+    #         payload["ref_id"] = project_id
+    #         payload["file_name"]=file_name_url
+    #         payload["title_name"] = title_file_name
+    #         payload["created_at"]= created_at
+    #         payload["violation_status"]= 'Processing'
+    #         payload["file_type"] = file_type
+    #         neuro,error = NeuroAnalysisSchema().load(payload)
+    #         print("im error",error)
+    #         neuro.save()
 
-        role_arn = 'arn:aws:iam::274822417273:role/AmazonRekognitionServiceRoleCopy'
-        pickle_path = "./mv_nalign/var/preloader_models/" + re.sub("[^a-zA-Z0-9\.]", "_", '%s_%s.pickle' % (bucket, file_name_url))
-        print("pickle",pickle_path)
-        try:
-            with open(pickle_path, 'rb') as handle:
-                print('[%s] Loading pickled data...\n' % time.time())
-                p = pickle.load(handle)
-                p.update_public_aws_path()
-        except FileNotFoundError:
-            print('[%s] Loading AWS data...\n' % time.time())
-            p = PreLoader(file_name_url, bucket)
-            p.preload()
+    #     role_arn = 'arn:aws:iam::274822417273:role/AmazonRekognitionServiceRoleCopy'
+    #     pickle_path = "./mv_nalign/var/preloader_models/" + re.sub("[^a-zA-Z0-9\.]", "_", '%s_%s.pickle' % (bucket, file_name_url))
+    #     print("pickle",pickle_path)
+    #     try:
+    #         with open(pickle_path, 'rb') as handle:
+    #             print('[%s] Loading pickled data...\n' % time.time())
+    #             p = pickle.load(handle)
+    #             p.update_public_aws_path()
+    #     except FileNotFoundError:
+    #         print('[%s] Loading AWS data...\n' % time.time())
+    #         p = PreLoader(file_name_url, bucket)
+    #         p.preload()
         
-        try:
-            with fu.ThreadPoolExecutor() as ex:
-                launches = []
-            # Eye Contact
-                print("file type",file_type)
-                if file_type=='video' or file_type=='image':
-                    try: 
-                        start = time.time()
-                        analyzer = gaze.Gaze(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Eye",scenario='search_for_eyes_contact')
-                            neuro.no_eyes_contact={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.no_eyes_contact={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.no_eyes_contact={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #     try:
+    #         with fu.ThreadPoolExecutor() as ex:
+    #             launches = []
+    #         # Eye Contact
+    #             print("file type",file_type)
+    #             if file_type=='video' or file_type=='image':
+    #                 try: 
+    #                     start = time.time()
+    #                     analyzer = gaze.Gaze(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Eye",scenario='search_for_eyes_contact')
+    #                         neuro.no_eyes_contact={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.no_eyes_contact={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.no_eyes_contact={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = hf.HumanityFocused(p) #C
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Women",scenario='search_for_more_than_two_consistent_characters')
-                            neuro.more_than_two_consistent_characters={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.more_than_two_consistent_characters={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.more_than_two_consistent_characters={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save() 
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = hf.HumanityFocused(p) #C
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Women",scenario='search_for_more_than_two_consistent_characters')
+    #                         neuro.more_than_two_consistent_characters={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.more_than_two_consistent_characters={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.more_than_two_consistent_characters={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save() 
                 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = fm.FamilyInteractions(p) #C
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Women",scenario='search_for_more_than_two_consistent_characters')
-                            neuro.lack_of_family_interactions={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.lack_of_family_interactions={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.lack_of_family_interactions={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = fm.FamilyInteractions(p) #C
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Women",scenario='search_for_more_than_two_consistent_characters')
+    #                         neuro.lack_of_family_interactions={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.lack_of_family_interactions={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.lack_of_family_interactions={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = text_relative_position.TextObjectsRelative(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        print("im object",json_object)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start )
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_images_on_right_words_to_left')
-                            neuro.images_on_right_words_to_left={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.images_on_right_words_to_left={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.images_on_right_words_to_left={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = text_relative_position.TextObjectsRelative(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     print("im object",json_object)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start )
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_images_on_right_words_to_left')
+    #                         neuro.images_on_right_words_to_left={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.images_on_right_words_to_left={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.images_on_right_words_to_left={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
                 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = text_over_face.TextOverFace(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start )
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_images_on_right_words_to_left')
-                            neuro.text_on_face={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.text_on_face={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.text_on_face={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save() 
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = text_over_face.TextOverFace(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start )
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_images_on_right_words_to_left')
+    #                         neuro.text_on_face={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.text_on_face={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.text_on_face={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save() 
                 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = numerosity_principle.NumerosityPrinciple(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_numerosity_principle')
-                            neuro.more_than_three_visual_clusters={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.more_than_three_visual_clusters={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.more_than_three_visual_clusters={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save() 
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = numerosity_principle.NumerosityPrinciple(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="TRP",scenario='search_for_numerosity_principle')
+    #                         neuro.more_than_three_visual_clusters={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.more_than_three_visual_clusters={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.more_than_three_visual_clusters={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save() 
                 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = cp.CloseProximity(p) #C
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="CP",scenario='search_for_more_than_two_people_in_close_proximity')
-                            neuro.more_than_two_people_in_close_proximity={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.more_than_two_people_in_close_proximity={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.more_than_two_people_in_close_proximity={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = cp.CloseProximity(p) #C
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="CP",scenario='search_for_more_than_two_people_in_close_proximity')
+    #                         neuro.more_than_two_people_in_close_proximity={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.more_than_two_people_in_close_proximity={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.more_than_two_people_in_close_proximity={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = wcp.WomenCloseProximity(p) #C
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="CP",scenario='search_for_more_than_two_people_in_close_proximity')
-                            neuro.women_apart_not_in_close_physicalproximity={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.women_apart_not_in_close_physicalproximity={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.women_apart_not_in_close_physicalproximity={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = wcp.WomenCloseProximity(p) #C
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="CP",scenario='search_for_more_than_two_people_in_close_proximity')
+    #                         neuro.women_apart_not_in_close_physicalproximity={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.women_apart_not_in_close_physicalproximity={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.women_apart_not_in_close_physicalproximity={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = background_principle.BackgroundPrinciple(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Background",scenario='search_txt_bkg')
-                            neuro.overlay_text_background={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.overlay_text_background={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.overlay_text_background={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
-                print(file_type)
-                if file_type=='video':
-                    try:
-                        start = time.time()
-                        analyzer = variation_in_terrain.VariationInTerrainPrinciple(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if json_object['ViolationFound'] == True:
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Terrain",scenario='search_txt_bkg')
-                            neuro.variation_in_terrain={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.variation_in_terrain={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.variation_in_terrain={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = background_principle.BackgroundPrinciple(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Background",scenario='search_txt_bkg')
+    #                         neuro.overlay_text_background={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.overlay_text_background={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.overlay_text_background={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
+    #             print(file_type)
+    #             if file_type=='video':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = variation_in_terrain.VariationInTerrainPrinciple(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if json_object['ViolationFound'] == True:
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Terrain",scenario='search_txt_bkg')
+    #                         neuro.variation_in_terrain={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.variation_in_terrain={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.variation_in_terrain={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video' or file_type=='image':
-                    try:
-                        start = time.time()
-                        analyzer = body_parts.BodyParts(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Body",scenario='search_body_parts')
-                            neuro.body_part_isolation={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.body_part_isolation={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.body_part_isolation={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
+    #             if file_type=='video' or file_type=='image':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = body_parts.BodyParts(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Body",scenario='search_body_parts')
+    #                         neuro.body_part_isolation={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.body_part_isolation={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.body_part_isolation={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
 
-                if file_type=='video':
-                    try:
-                        start = time.time()
-                        analyzer = logo.LogoPrinciple(p)
-                        launches.append(ex.submit(analyzer))
-                        res_1 = analyzer.run()
-                        res_json = json.dumps(res_1)
-                        json_object = json.loads(res_json)
-                        stop = time.time()
-                        time_capture = format_timespan(stop - start)
-                        if analyzer != '':
-                            results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Logo")
-                            neuro.interrupt_flow_storyline={"analysis_result":json_object,"results":results,'timeduration':time_capture}
-                            neuro.save()
-                            self.get_progress_bar(project_id)
-                        else:
-                            neuro.interrupt_flow_storyline={"analysis_result":json_object,"results":[],'timeduration':time_capture}
-                            neuro.save()
-                    except (ValueError, KeyError) as e:
-                        neuro.interrupt_flow_storyline={"analysis_result":[],"results":[],'timeduration':[]}
-                        neuro.save()
-            fu.wait(launches)
-            print('[%s] Finished\n' % time.time())
-        except IOError as e:
-            print('[%s] Error: FS Operation failed: %s' % (time.time(), e.strerror))
+    #             if file_type=='video':
+    #                 try:
+    #                     start = time.time()
+    #                     analyzer = logo.LogoPrinciple(p)
+    #                     launches.append(ex.submit(analyzer))
+    #                     res_1 = analyzer.run()
+    #                     res_json = json.dumps(res_1)
+    #                     json_object = json.loads(res_json)
+    #                     stop = time.time()
+    #                     time_capture = format_timespan(stop - start)
+    #                     if analyzer != '':
+    #                         results=self.generate_end_impacts_results(json_object,proj_obj.file_url,file_type,project_id,analyzer_type="Logo")
+    #                         neuro.interrupt_flow_storyline={"analysis_result":json_object,"results":results,'timeduration':time_capture}
+    #                         neuro.save()
+    #                         self.get_progress_bar(project_id)
+    #                     else:
+    #                         neuro.interrupt_flow_storyline={"analysis_result":json_object,"results":[],'timeduration':time_capture}
+    #                         neuro.save()
+    #                 except (ValueError, KeyError) as e:
+    #                     neuro.interrupt_flow_storyline={"analysis_result":[],"results":[],'timeduration':[]}
+    #                     neuro.save()
+    #         fu.wait(launches)
+    #         print('[%s] Finished\n' % time.time())
+    #     except IOError as e:
+    #         print('[%s] Error: FS Operation failed: %s' % (time.time(), e.strerror))
 
-        if file_type=="image":
-            attrs = vars(neuro)
-            print(', '.join("%s: %s" % item for item in attrs.items()))
-            print("im neuro inside",vars(neuro))
-            if 'more_than_two_people_in_close_proximity' in neuro and 'women_apart_not_in_close_physicalproximity' in neuro and 'lack_of_family_interactions' in neuro and 'images_on_right_words_to_left' in neuro and \
-                'more_than_three_visual_clusters' in neuro and 'more_than_two_consistent_characters' in neuro and 'text_on_face' in neuro and 'no_eyes_contact' in neuro and 'overlay_text_background' in neuro and 'body_part_isolation' in neuro:
-                proj_obj.impacts_status={"status":"completed"}
-                proj_obj.impacts_count=self.get_total_impacts(self.get_impacts_count(project_id))
-                proj_obj.updated_at=datetime.datetime.now()
-                proj_obj.save()
-                neuro.created_at=datetime.datetime.now()
-                neuro.violation_status = 'Completed'
-                neuro.file_type = file_type
-                neuro.save()
-                print("IMPACT CALCULATIONS COMPLETED")
-                print("im neuro check",neuro)
-        else:
-            proj_obj.impacts_status={"status":"completed"}
-            proj_obj.multiple_video_status={"status":"completed"}
-            proj_obj.impacts_count=self.get_total_impacts(self.get_impacts_count(project_id))
-            proj_obj.updated_at=datetime.datetime.now()
-            proj_obj.save()
-            neuro.created_at=datetime.datetime.now()
-            neuro.violation_status = 'Completed'
-            neuro.file_type = file_type
-            neuro.save()
-            print("IMPACT CALCULATIONS COMPLETED")
+    #     if file_type=="image":
+    #         attrs = vars(neuro)
+    #         print(', '.join("%s: %s" % item for item in attrs.items()))
+    #         print("im neuro inside",vars(neuro))
+    #         if 'more_than_two_people_in_close_proximity' in neuro and 'women_apart_not_in_close_physicalproximity' in neuro and 'lack_of_family_interactions' in neuro and 'images_on_right_words_to_left' in neuro and \
+    #             'more_than_three_visual_clusters' in neuro and 'more_than_two_consistent_characters' in neuro and 'text_on_face' in neuro and 'no_eyes_contact' in neuro and 'overlay_text_background' in neuro and 'body_part_isolation' in neuro:
+    #             proj_obj.impacts_status={"status":"completed"}
+    #             proj_obj.impacts_count=self.get_total_impacts(self.get_impacts_count(project_id))
+    #             proj_obj.updated_at=datetime.datetime.now()
+    #             proj_obj.save()
+    #             neuro.created_at=datetime.datetime.now()
+    #             neuro.violation_status = 'Completed'
+    #             neuro.file_type = file_type
+    #             neuro.save()
+    #             print("IMPACT CALCULATIONS COMPLETED")
+    #             print("im neuro check",neuro)
+    #     else:
+    #         proj_obj.impacts_status={"status":"completed"}
+    #         proj_obj.multiple_video_status={"status":"completed"}
+    #         proj_obj.impacts_count=self.get_total_impacts(self.get_impacts_count(project_id))
+    #         proj_obj.updated_at=datetime.datetime.now()
+    #         proj_obj.save()
+    #         neuro.created_at=datetime.datetime.now()
+    #         neuro.violation_status = 'Completed'
+    #         neuro.file_type = file_type
+    #         neuro.save()
+    #         print("IMPACT CALCULATIONS COMPLETED")
 
-        return None
+    #     return None
 
     def upload_image_to_s3_from_input(self,image_file,ref_id):
         file_extn = image_file.filename.split('.')[-1]

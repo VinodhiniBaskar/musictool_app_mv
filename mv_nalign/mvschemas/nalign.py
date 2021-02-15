@@ -22,7 +22,7 @@ from functools import wraps
 from flask import abort
 import marshmallow as ma
 from marshmallow import Schema, post_load, validate
-from mv_nalign.mvmodels.Brands import BrandCategoryGroup
+# from mv_nalign.mvmodels.Brands import BrandCategoryGroup
 from mv_nalign.mvmodels.Projects import Project,ProjectFile,TempFileStorage,NeuroAnalysis,Feedback
 from mv_nalign.mvexception.exception import MVException, ValidationException,Test
 from mongoengine.queryset.visitor import Q
@@ -36,8 +36,8 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from mv_nalign import settings
 from mv_nalign.api import utils
-from mv_nalign.utility import upload_to_s3,object_detection,detect_text,upload_to_gcp
-from mv_nalign.utility.src.aws_helper_service import AwsHelperService
+# from mv_nalign.utility import upload_to_s3,object_detection,detect_text,upload_to_gcp
+# from mv_nalign.utility.src.aws_helper_service import AwsHelperService
 # from mv_nalign.analysis import analysis,analysis_main
 from pymongo import MongoClient
 import threading
@@ -47,7 +47,7 @@ import asyncio
 from humanfriendly import format_timespan
 from google.cloud import storage
 import concurrent.futures as fu
-from mv_nalign.analysis.src.aws_helper_service import AwsHelperService
+# from mv_nalign.analysis.src.aws_helper_service import AwsHelperService
 # from mv_nalign.analysis.src.principle.gaze import gaze
 # from mv_nalign.analysis.src.principle.text_position import text_over_face, text_relative_position
 # from mv_nalign.analysis.src.principle.numerosity import numerosity_principle
@@ -92,21 +92,21 @@ class ProjectSchema(Schema):
     file_duration = ma.fields.Str(required=False, default='')
     file_youtube = ma.fields.Str(required=False, default='')
     deleted = ma.fields.Boolean(required=False, default=False)
-    brand = ma.fields.Str(required=False)
-    product = ma.fields.Str(required=False)
+    # brand = ma.fields.Str(required=False)
+    # product = ma.fields.Str(required=False)
     file_status = ma.fields.Dict(required=False)
-    multiple_video_upload_status = ma.fields.Dict(required=False)
-    multiple_image_upload_status = ma.fields.Dict(required=False)
+    # multiple_video_upload_status = ma.fields.Dict(required=False)
+    # multiple_image_upload_status = ma.fields.Dict(required=False)
     thumbnail_url = ma.fields.Str(required=False)
     file_type= ma.fields.Str(required=False)
-    impacts_count=ma.fields.Int(required=False)
+    # impacts_count=ma.fields.Int(required=False)
     published_at = ma.fields.DateTime()
     created_at = ma.fields.DateTime()
     updated_at = ma.fields.DateTime()
-    impacts_status =ma.fields.Dict(required=False)
+    # impacts_status =ma.fields.Dict(required=False)
     captions = ma.fields.Str(required=False)
-    image_width = ma.fields.Int(required=False)
-    image_height= ma.fields.Int(required=False)
+    # image_width = ma.fields.Int(required=False)
+    # image_height= ma.fields.Int(required=False)
     mono_link = ma.fields.Str(required=False)
 
 
@@ -127,47 +127,47 @@ class ProjectFileSchema(Schema):
         return ProjectFile(**data)
 
 
-class NeuroAnalysisSchema(Schema):
+# class NeuroAnalysisSchema(Schema):
 
-    db_id = ma.fields.Str(required=False)
-    ref_id = ma.fields.Str(required=False)
-    file_name = ma.fields.Str(required=False)
-    created_date = ma.fields.DateTime()
-    violation_status = ma.fields.Str(required=False)
-    file_type = ma.fields.Str(required=False)
-    title_name = ma.fields.Str(required=False)
-    more_than_two_consistent_characters = ma.fields.Dict(required = False)
-    women_together = ma.fields.Dict(required = False)
-    lack_of_family_interactions = ma.fields.Dict(required = False)
-    text_on_face = ma.fields.Dict(required = False)
-    images_on_right_words_to_left = ma.fields.Dict(required = False)
-    eyes_contact = ma.fields.Dict(required= False)
-    more_than_three_visual_clusters = ma.fields.Dict(required= False)
-    interrupt_flow_storyline = ma.fields.Dict(required= False)
-    overlay_text_background = ma.fields.Dict(required= False)
-    variation_in_terrain = ma.fields.Dict(required= False)
-    body_part_isolation = ma.fields.Dict(required= False)
+#     db_id = ma.fields.Str(required=False)
+#     ref_id = ma.fields.Str(required=False)
+#     file_name = ma.fields.Str(required=False)
+#     created_date = ma.fields.DateTime()
+#     violation_status = ma.fields.Str(required=False)
+#     file_type = ma.fields.Str(required=False)
+#     title_name = ma.fields.Str(required=False)
+#     more_than_two_consistent_characters = ma.fields.Dict(required = False)
+#     women_together = ma.fields.Dict(required = False)
+#     lack_of_family_interactions = ma.fields.Dict(required = False)
+#     text_on_face = ma.fields.Dict(required = False)
+#     images_on_right_words_to_left = ma.fields.Dict(required = False)
+#     eyes_contact = ma.fields.Dict(required= False)
+#     more_than_three_visual_clusters = ma.fields.Dict(required= False)
+#     interrupt_flow_storyline = ma.fields.Dict(required= False)
+#     overlay_text_background = ma.fields.Dict(required= False)
+#     variation_in_terrain = ma.fields.Dict(required= False)
+#     body_part_isolation = ma.fields.Dict(required= False)
 
-    @post_load
-    def make_neuro_analysis(self, data):
-        return NeuroAnalysis(**data)
-
-
-class FeedbackSchema(Schema):
-    db_id = ma.fields.Str(required=False)
-    ref_id = ma.fields.Str(required=False)
-    violation_name=ma.fields.Str(required=False)
-    feedbacks=ma.fields.List(ma.fields.Str(required=False),required=False)
-    file_type=ma.fields.Str(required=False,default="image")
-    is_violation=ma.fields.Boolean(required=False)
-    created_at = ma.fields.DateTime()
-    updated_at = ma.fields.DateTime()
+#     @post_load
+#     def make_neuro_analysis(self, data):
+#         return NeuroAnalysis(**data)
 
 
+# class FeedbackSchema(Schema):
+#     db_id = ma.fields.Str(required=False)
+#     ref_id = ma.fields.Str(required=False)
+#     violation_name=ma.fields.Str(required=False)
+#     feedbacks=ma.fields.List(ma.fields.Str(required=False),required=False)
+#     file_type=ma.fields.Str(required=False,default="image")
+#     is_violation=ma.fields.Boolean(required=False)
+#     created_at = ma.fields.DateTime()
+#     updated_at = ma.fields.DateTime()
 
-    @post_load
-    def make_feedback(self, data):
-        return Feedback(**data)
+
+
+#     @post_load
+#     def make_feedback(self, data):
+#         return Feedback(**data)
 
 
 '''

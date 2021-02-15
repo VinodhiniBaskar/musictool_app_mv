@@ -7,7 +7,7 @@ from flask import url_for
 
 log = logging.getLogger(__name__)
 
-api = Api(version='1.0', title='Neuro Tool',
+api = Api(version='1.0', title='Music Tool',
           description='One API to bind them and Databases to rule them all')
 
 

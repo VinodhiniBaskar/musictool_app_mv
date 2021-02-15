@@ -80,7 +80,7 @@ DEFAULT_CAPTIONS_STRING = "No Captions Available"
 
 ELEVEN_PRINCIPLE = ['','','','','','','','TWO CONSISTENT CHARACTERS','WOMEN TOGETHER','','FAMILY INTERACTIONS','']
 DEFAULT_UPLOAD_PATH = settings.MEDIA_PATH+"/"
-BASE_MEDIA_PATH = "mv_nalign/media/"
+BASE_MEDIA_PATH = "mv_nalign/static/media/"
 THUMBNAIL_JPG = "_thumbnail.jpg"
 
 #TODO handle mv exception

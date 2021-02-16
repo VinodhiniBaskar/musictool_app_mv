@@ -60,13 +60,13 @@ jsproject = ns.model('Project',{
 # jsprojrct_output = ns
 
 jsprojectlist=ns.inherit('projectlist',jsproject,{
-	'file_status':fields.Raw,
-	'multiple_video_upload_status':fields.Raw,
-	'multiple_image_upload_status':fields.Raw,
-	'impacts_status':fields.Raw,
-	'impacts_count':fields.Integer(description="impacts coumt",default=0),
-	'file_count':fields.Raw,
-	'processMsg':fields.Raw
+	'file_status':fields.Raw
+	# 'multiple_video_upload_status':fields.Raw,
+	# 'multiple_image_upload_status':fields.Raw,
+	# 'impacts_status':fields.Raw,
+	# 'impacts_count':fields.Integer(description="impacts coumt",default=0),
+	# 'file_count':fields.Raw,
+	# 'processMsg':fields.Raw
 })
 
 jsimpact=ns.model('Impact',{
@@ -87,23 +87,6 @@ jsprojectlistpaginated=ns.model('projectlistpaginated',{
 	'recordsTotal':fields.Integer()
 })
 
-# jsawsdebugresult=ns.model('AwsDebugResult',{
-# 	'face_analysis':fields.Raw,
-# 	'text_analysis':fields.Raw,
-# 	'object_analysis':fields.Raw,
-# })
-
-# jsfeedback=ns.model('Feedback',{
-# 	'db_id':fields.String(description='id of the project'),
-# 	'ref_id':fields.String(description='keyword for the violations'),
-# 	'violation_name':fields.String(description='keyword for the violations'),
-# 	'feedbacks':fields.List(fields.String(),description='id of the project'),
-# 	'is_violation':fields.Boolean(description='keyword for the violations',default=False),
-# 	'created_at': fields.DateTime(description='created at'),
-# 	'updated_at': fields.DateTime(description='modified at')
-	
-# })
-
 state=''
 
 
@@ -122,263 +105,45 @@ state=''
 	================================================
 '''
 
-# @ns.route('/brand')
-# class BrandService(Resource):
-	
-	
-# 	def get(self):
-# 		resp=theNAlignSetFactory.get_brand()
-# 		return resp
+# @ns.route('/musictool_project/<string:db_id>')
+# class ProjectServiceDetail(Resource):
 
-
-# @ns.route('/product')
-# class BrandProductService(Resource):
-
-# 	@ns.expect(jsbrand)
-# 	def post(self):
-# 		""" This function defines the product based on brand """
-		
-# 		payload = api.payload
-
-# 		resp=theNAlignSetFactory.get_product_by_brand(payload["brand_name"])
-# 		return resp
-
-@ns.route('/progress_bar/<string:db_id>')
-class ProgressBar(Resource):
-
-	# @ns.marshal_with(jsproject,skip_none=True)
-	def get(self,db_id):
-
-		""" This function defines to generate the impact and violations details """
-		
-		resp = theNAlignSetFactory.get_progress_bar(db_id)
-		print(resp)
-		
-		return resp
-
-# @ns.route('/project/multiple_upload')
-# class UploadVideo(Resource):
-
-# 	@ns.param('file', description='store the file and attach to the brand', _in='formData', type='file',required=True)
-# 	@ns.param("file_metadata",description="json as string",_in='formData',
-# 	)
-# 	@ns.marshal_with(jsprojectlist,skip_none=True)
-# 	def post(self):
-# 		resp = []
-# 		d = []
-# 		payload = json.loads(request.form["file_metadata"])
-# 		result=request.files
-# 		result2=result.to_dict(flat=False)
-
-# 		for key,value in result2.items():
-# 			for i in range(len(payload)):
-# 				# print(value[i])
-# 				# print(payload[i])
-# 				if (payload[i]["file_type"] =="video" or payload[i]["file_type"]=="image") and len(value) > 0:
-# 					payload[i]["file"] = value[i]
-# 					resp_1=theNAlignSetFactory.create_project(payload[i])
-# 					d.append(resp_1)
-# 					print("im data",d)
-# 				# resp.append({'file_count':i,'data':d})
-# 					# print("im resp",resp)
-# 					# d.append({resp)
-# 					# print(d)
-# 					# print(type(resp))
-# 					# d.update()
-# 			return d
-	
-
-# @ns.route('/project')
-# class ProjectService(Resource):
-# 	@ns.marshal_with(jsprojectlist,skip_none=True)
-# 	@ns.expect(jsproject)
-# 	def post(self):
-
-# 		""" This function defines to create the project """
-		
-# 		payload = api.payload
-# 		resp=theNAlignSetFactory.create_project(payload)
-# 		print("im resp project",resp)
-# 		return resp
-		
-# 	@ns.expect(pagination_arguments)
-# 	@ns.marshal_with(jsprojectlistpaginated)
-# 	def get(self):
-# 		""" This function defines to list the project """
-		
-# 		args = pagination_arguments.parse_args(request)
-# 		page = args.get('page')
-# 		per_page = args.get('per_page')
-# 		column = args.get('sort_field')
-# 		order = args.get('order')
-# 		partial=args.get('search_key')
-# 		resp=theNAlignSetFactory.get_paginated_project_results(partial,column,order,page,per_page)
-		
-# 		return resp
-	
-	
-@ns.route('/musictool_project/<string:db_id>')
-class ProjectServiceDetail(Resource):
-
-	@ns.marshal_with(jsproject,skip_none=True)
-	def get(self,db_id):
-
-		""" This function defines to get the particular project details """
-		
-		
-		resp=theNAlignSetFactory.get_by_id(db_id)
-		return resp
-
-
-
-
-# @ns.route('/project/video_status')
-# class ProjectServiceVideoStatus(Resource):
-
-# 	@ns.expect(parsers.parser_arguments)
-# 	@ns.marshal_with(jsprojectlist,skip_none=True)
-# 	def get(self):
+# 	@ns.marshal_with(jsproject,skip_none=True)
+# 	def get(self,db_id):
 
 # 		""" This function defines to get the particular project details """
 		
 		
-# 		args=parsers.parser_arguments.parse_args(request)
-# 		resp=theNAlignSetFactory.get_video_status_by_project_id(args["db_id"])
+# 		resp=theNAlignSetFactory.get_by_id(db_id)
 # 		return resp
 
+@ns.route('/musictool_project')
+class ProjectService(Resource):
+	@ns.marshal_with(jsprojectlist,skip_none=True)
+	@ns.expect(jsproject)
+	def post(self):
 
-# @ns.route('/upload_file')
-
-# class UploadVideo(Resource):
-
-# 	@ns.param('file', description='store the file and attach to the brand', _in='formData', type='file',required=True)
-# 	@ns.param("file_metadata",description="json as string",_in='formData',
-# 	)
-# 	@ns.marshal_with(jsprojectlist,skip_none=True)
-# 	def post(self):
-# 		payload = json.loads(request.form["file_metadata"])
-# 		if "file" in request.files and len(request.files)>0:
-# 			ufile = request.files['file']
-# 			if payload["file_type"] =="image":
-# 				payload["file"] = ufile
-
-# 				resp=theNAlignSetFactory.create_project(payload)
-# 		return resp
-
-
-# @ns.route('/generate_violations/impact_status/<string:db_id>')
-# class ProjectServiceViolations(Resource):
-# 	def get(self,db_id):
-# 		""" This function defines to generate the impact and violations details """
-# 		resp=theNAlignSetFactory.generate_impacts(db_id)
-# 		return resp
-
-
-# @ns.route('/impacts')
-# class ProjectServiceImpacts(Resource):
-# 	@ns.expect(jsimpact)
-# 	def post(self):
-
-# 		""" This function defines to generate the impact and violations details """
+		""" This function defines to create the project """
 		
-# 		payload =api.payload
-# 		resp = theNAlignSetFactory.get_impacts_based_on_keyword(payload["ref_id"], payload["keyword"])
-# 		return resp
-
-# @ns.route('/impacts_count/<string:db_id>')
-# class ProjectImpactsDetails(Resource):
-	
-# 	def get(self,db_id):
-
-# 		""" This function defines to generate the impact and violations details """
-		
-# 		resp=theNAlignSetFactory.get_impacts_count(db_id)
-# 		return resp
-
-# @ns.route('/excel_download')
-# class ProjectExcelExport(Resource):
-	
-# 	def get(self):
-
-# 		""" This function defines to generate the impact and violations details """
-		
-# 		resp=theNAlignSetFactory.get_excel()
-# 		return resp
-
-# @ns.route('/screen_count/<string:db_id>')
-# class ScreenCount(Resource):
-
-# 	def get(self,db_id):
-
-# 		""" This function defines to generate the impact and violations details """
-# 		resp=theNAlignSetFactory.get_screen_count(db_id)
-# 		return resp
-
-@ns.route('/captions/<string:db_id>')
-class ProjectServiceCaptions(Resource):
-
-	def get(self,db_id):
-
-		""" This function defines to generate the impact and violations details """
-		
-		payload =api.payload(db_id)
-		resp=theNAlignSetFactory.get_captions(db_id)
+		payload = api.payload
+		resp=theNAlignSetFactory.create_project(payload)
+		print("im resp project",resp)
 		return resp
+
+	@ns.expect(pagination_arguments)
+	@ns.marshal_with(jsprojectlistpaginated)
+	def get(self):
+		""" This function defines to list the project """
 		
-
-# @ns.route('/project/image_upload')
-# class ProjectServiceUpload(Resource):
-
-# 	@ns.param('photo', description='store the file and attach to the brand', _in='formData', type='file',required=True)
-# 	def post(self):
-
-# 		""" This function defines to create the project with file """
+		args = pagination_arguments.parse_args(request)
+		page = args.get('page')
+		per_page = args.get('per_page')
+		column = args.get('sort_field')
+		order = args.get('order')
+		partial=args.get('search_key')
+		resp=theNAlignSetFactory.get_paginated_project_results(partial,column,order,page,per_page)
 		
-# 		ufile = request.files.getlist('photo')
-# 		for s in ufile:
-# 			print(s)
-# 		resp=theNAlignSetFactory.upload_image_to_s3_from_input(ufile)
-
-# 		return resp
-
-
-# @ns.route('/analysis_detail/<string:db_id>')
-# class ProjectAnalysisDetails(Resource):
-
-# 	@ns.marshal_with(jsawsdebugresult)
-# 	def get(self,db_id):
-
-# 		""" This function defines to get aws analysis details for the particular project """
-		
-# 		resp=theNAlignSetFactory.get_analysis_detail_by_db_id(db_id)
-# 		return resp
-
-
-# @ns.route('/feedback_detail')
-# class FeedbackDetail(Resource):
-
-# 	@ns.marshal_with(jsfeedback)
-# 	@ns.expect(jsimpact)
-# 	def post(self):
-
-# 		""" This function defines to get aws analysis details for the particular project """
-		
-# 		payload =api.payload
-# 		resp=theNAlignSetFactory.get_feedback(payload)
-# 		return resp
-
-# @ns.route('/feedback')
-# class Feedback(Resource):
-
-# 	@ns.marshal_with(jsfeedback)
-# 	@ns.expect(jsfeedback)
-# 	def post(self):
-
-# 		""" This function defines to get aws analysis details for the particular project """
-		
-# 		payload =api.payload
-# 		resp=theNAlignSetFactory.upsert_feedback(payload)
-# 		return resp
+		return resp
 
 @ns.route('/authorize')
 class Authorize(Resource):
@@ -490,33 +255,7 @@ def print_index_table():
 
 
 
-@ns.route('/musictool_project')
-class ProjectService(Resource):
-	@ns.marshal_with(jsprojectlist,skip_none=True)
-	@ns.expect(jsproject)
-	def post(self):
 
-		""" This function defines to create the project """
-		
-		payload = api.payload
-		resp=theNAlignSetFactory.create_project(payload)
-		print("im resp project",resp)
-		return resp
-
-	@ns.expect(pagination_arguments)
-	@ns.marshal_with(jsprojectlistpaginated)
-	def get(self):
-		""" This function defines to list the project """
-		
-		args = pagination_arguments.parse_args(request)
-		page = args.get('page')
-		per_page = args.get('per_page')
-		column = args.get('sort_field')
-		order = args.get('order')
-		partial=args.get('search_key')
-		resp=theNAlignSetFactory.get_paginated_project_results(partial,column,order,page,per_page)
-		
-		return resp
 		
 		
 

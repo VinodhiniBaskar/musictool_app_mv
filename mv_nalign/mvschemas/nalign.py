@@ -15,14 +15,15 @@ import timeit
 import pickle
 import csv
 import subprocess
+import pafy
 from pydub import AudioSegment
 from mhyt import yt_download
 import cv2
 from functools import wraps
 from flask import abort
 import marshmallow as ma
+from urllib.error import ContentTooShortError
 from marshmallow import Schema, post_load, validate
-# from mv_nalign.mvmodels.Brands import BrandCategoryGroup
 from mv_nalign.mvmodels.Projects import Project,ProjectFile,TempFileStorage,NeuroAnalysis,Feedback
 from mv_nalign.mvexception.exception import MVException, ValidationException,Test
 from mongoengine.queryset.visitor import Q
@@ -36,9 +37,6 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from mv_nalign import settings
 from mv_nalign.api import utils
-# from mv_nalign.utility import upload_to_s3,object_detection,detect_text,upload_to_gcp
-# from mv_nalign.utility.src.aws_helper_service import AwsHelperService
-# from mv_nalign.analysis import analysis,analysis_main
 from pymongo import MongoClient
 import threading
 from PIL import Image
@@ -47,22 +45,9 @@ import asyncio
 from humanfriendly import format_timespan
 from google.cloud import storage
 import concurrent.futures as fu
-# from mv_nalign.analysis.src.aws_helper_service import AwsHelperService
-# from mv_nalign.analysis.src.principle.gaze import gaze
-# from mv_nalign.analysis.src.principle.text_position import text_over_face, text_relative_position
-# from mv_nalign.analysis.src.principle.numerosity import numerosity_principle
-# from mv_nalign.analysis.src.principle.background import background_principle
-# from mv_nalign.analysis.src.principle.variation import variation_in_terrain
-# from mv_nalign.analysis.src.principle.body_parts import body_parts
-# from mv_nalign.analysis.src.principle.logo import logo
-# from mv_nalign.analysis.src.principle.humanity import humanity_focused as hf, close_proximity as cp, family_interactions as fm, \
-#     women_close_proximity as wcp
-# from mv_nalign.analysis.src.data_preloader import PreLoader
+
 from werkzeug.utils import secure_filename
-# from dotenv import load_dotenv
-# load_dotenv() 
- 
-#Removed dotenv
+
 
 print (sys.getdefaultencoding())
 
@@ -74,11 +59,9 @@ coll=db["test_youtube_account"]
 
 
 WATCH_URL = "https://www.youtube.com/watch?v="
-AMAZON_BASE_URL="https://machine-vantage-inc-images.s3.us-east-2.amazonaws.com/"
-AMAZON_VIDEO_BASE_URL="https://machine-vantage-inc-video.s3.us-east-2.amazonaws.com/"
-DEFAULT_CAPTIONS_STRING = "No Captions Available"
+pafy.set_api_key("AIzaSyDb6YEmYxpBPA4il0VmEqxYUC2qovIuJGo")
 
-ELEVEN_PRINCIPLE = ['','','','','','','','TWO CONSISTENT CHARACTERS','WOMEN TOGETHER','','FAMILY INTERACTIONS','']
+
 DEFAULT_UPLOAD_PATH = settings.MEDIA_PATH+"/"
 BASE_MEDIA_PATH = "mv_nalign/static/media/"
 THUMBNAIL_JPG = "_thumbnail.jpg"
@@ -125,50 +108,6 @@ class ProjectFileSchema(Schema):
     @post_load
     def make_project_file(self, data):
         return ProjectFile(**data)
-
-
-# class NeuroAnalysisSchema(Schema):
-
-#     db_id = ma.fields.Str(required=False)
-#     ref_id = ma.fields.Str(required=False)
-#     file_name = ma.fields.Str(required=False)
-#     created_date = ma.fields.DateTime()
-#     violation_status = ma.fields.Str(required=False)
-#     file_type = ma.fields.Str(required=False)
-#     title_name = ma.fields.Str(required=False)
-#     more_than_two_consistent_characters = ma.fields.Dict(required = False)
-#     women_together = ma.fields.Dict(required = False)
-#     lack_of_family_interactions = ma.fields.Dict(required = False)
-#     text_on_face = ma.fields.Dict(required = False)
-#     images_on_right_words_to_left = ma.fields.Dict(required = False)
-#     eyes_contact = ma.fields.Dict(required= False)
-#     more_than_three_visual_clusters = ma.fields.Dict(required= False)
-#     interrupt_flow_storyline = ma.fields.Dict(required= False)
-#     overlay_text_background = ma.fields.Dict(required= False)
-#     variation_in_terrain = ma.fields.Dict(required= False)
-#     body_part_isolation = ma.fields.Dict(required= False)
-
-#     @post_load
-#     def make_neuro_analysis(self, data):
-#         return NeuroAnalysis(**data)
-
-
-# class FeedbackSchema(Schema):
-#     db_id = ma.fields.Str(required=False)
-#     ref_id = ma.fields.Str(required=False)
-#     violation_name=ma.fields.Str(required=False)
-#     feedbacks=ma.fields.List(ma.fields.Str(required=False),required=False)
-#     file_type=ma.fields.Str(required=False,default="image")
-#     is_violation=ma.fields.Boolean(required=False)
-#     created_at = ma.fields.DateTime()
-#     updated_at = ma.fields.DateTime()
-
-
-
-#     @post_load
-#     def make_feedback(self, data):
-#         return Feedback(**data)
-
 
 '''
     ==============================================
@@ -319,86 +258,35 @@ class NAlignSetFactory(object):
             proj_obj["created_at"] = datetime.datetime.now()
             proj_obj['multiple_video_upload_status'] = {"status":"processing"}
             
-            # schema=ProjectSchema()
-            # retdata,error = schema.dump(proj_obj)
-        # UPDATE STATUS
-        # link source External means user uploaded a video in youtube and then get the metadata information
-        # link source Internal means user using youtube link to get the metadata information
-
-            # if proj_obj["file_type"] =="video" and (proj_obj["file_url"]=='' or proj_obj["file_url"]==None):
-            #     t_file_split=self.generate_video_storage(file,proj_obj["db_id"])
-            #     t_file = t_file_split.split('@')[0]
-            #     t_duration = t_file_split.split('@')[1]
-            #     proj_obj["file_url"] = t_file
-            #     file_name_thumbnail = ''
-            #     proj_obj["thumbnail_url"] = file_name_thumbnail
-            #     proj_obj["file_duration"]= str(t_duration)
-            # proj_obj.save()
-
             if proj_obj["file_url"] != None and proj_obj["file_url"] != '': 
-                # video_not_yt_download = proj_obj["file_url"].split('.')[0]
-                # url_check = BASE_MEDIA_PATH+proj_obj["db_id"]
-                # if video_not_yt_download == url_check and video_not_yt_download !='':
-                #     proj_obj["file_youtube"]= "No"
-                #     process_project(proj_obj.db_id)
-                # elif video_not_yt_download == 'https://www' and video_not_yt_download !='' :
-                #     proj_obj["file_youtube"]= "Yes"
-                # print("file_name",file)
-                music_file_name = proj_obj["db_id"]+'.mp3'
-                video_file_name = proj_obj["db_id"]+'.mp4'
-                music_file_name_wav = proj_obj["db_id"]+'.wav'
-                prefix_folder = settings.BASE_MEDIA_PATH
-                yt_download(proj_obj["file_url"],prefix_folder+music_file_name ,ismusic=True)
-                yt_download(proj_obj["file_url"],prefix_folder+video_file_name)
-                subprocess.call(["ffmpeg", "-i",prefix_folder+music_file_name,music_file_name_wav])
-                sound = AudioSegment.from_wav(music_file_name_wav)
-                sound = sound.set_channels(1)
-                export_path = sound.export(BASE_MEDIA_PATH+music_file_name_wav, format="wav")
-                print(export_path)
-                result = BASE_MEDIA_PATH+music_file_name_wav
-                proj_obj["thumbnail_url"] = prefix_folder+video_file_name
-                proj_obj['mono_link']=result
-            proj_obj.save()
-
-            if link_source:
-                if link_source.upper() == "EXTERNAL":
-                    proj_obj["file_status"] = {"status":"Processing"} #video yet to be uploaded
-                else:
-                    proj_obj["file_status"] = {"status":"Completed"} #video uploaded already
-
-            proj_obj["updated_at"] = datetime.datetime.now() 
-            proj_obj["impacts_status"] = {"status":"processing"}
-
-            proj_obj["captions"] = ""
-            if proj_obj["file_type"] =="image" and (proj_obj["file_url"]=='' or proj_obj["file_url"]==None):
-                t_file_split=self.generate_thumbnail_image(file,proj_obj["db_id"])
-                t_file = t_file_split.split('@')[0]
-                t_file_width = t_file_split.split('@')[1].split(',')[0]
-                t_file_height = t_file_split.split('@')[1].split(',')[1]
-                # print("file",t_file.split('/')[-1])
-                # print("file width",t_file_width)
-                # print("file width",t_file_height)
-                if t_file_split:
-                    proj_obj["file_url"] = t_file
-                    # file_name_thumbnail = ''
-                    # proj_obj["thumbnail_url"] = file_name_thumbnail
-                    proj_obj["file_youtube"]= "Null"
-                    proj_obj["image_width"]=t_file_width
-                    proj_obj["image_height"]=t_file_height
-                    up_load=upload_to_s3.upload_file(t_file, settings.IMAGE_BUCKET_NAME,t_file.split('/')[-1])
-                    # thumbnail_url = AMAZON_BASE_URL+t_file.split('/')[-1]
-                    proj_obj["thumbnail_url"] =''
-                    process_image(proj_obj.db_id)
-                    # filename = proj_obj["db_id"]+'.'+thumbnail_url.split('.')[-1]
-                    # org_img_to_s3 = upload_to_s3.upload_file(settings.BASE_MEDIA_PATH+filename,settings.IMAGE_BUCKET_NAME,filename)
-                    # print("org_img uploaded successfully")
-                    # proj_obj["file_url"] =AMAZON_BASE_URL+filename
-                    proj_obj["file_status"] = {"status":"Completed"}
-            proj_obj.save()
-        
-        if (proj_obj["file_youtube"]== "Null" or proj_obj["file_youtube"]== "Yes")  and proj_obj["impacts_status"]["status"]=="processing":
-            # print("im inside impacts")
-            process_video(proj_obj.db_id)
+                try:
+                    music_file_name = proj_obj["db_id"]+'.mp3'
+                    video_file_name = proj_obj["db_id"]+'.mp4'
+                    music_file_name_wav = proj_obj["db_id"]+'.wav'
+                    prefix_folder = settings.BASE_MEDIA_PATH
+                    yt_download(proj_obj["file_url"],prefix_folder+music_file_name ,ismusic=True)
+                    yt_download(proj_obj["file_url"],prefix_folder+video_file_name)
+                    subprocess.call(["ffmpeg", "-i",prefix_folder+music_file_name,music_file_name_wav])
+                    sound = AudioSegment.from_wav(music_file_name_wav)
+                    sound = sound.set_channels(1)
+                    sound = sound.set_frame_rate(44100)
+                    export_path = sound.export(BASE_MEDIA_PATH+music_file_name_wav, format="wav")
+                    print(export_path)
+                    # result = BASE_MEDIA_PATH+music_file_name_wav
+                    video = pafy.new(proj_obj["file_url"], basic=True)
+                    print("video thumb",video.thumb)
+                    proj_obj["thumbnail_url"] = video.thumb
+                    proj_obj['mono_link']='/static/media/'+proj_obj["db_id"]+'.wav'
+                    proj_obj["updated_at"] = datetime.datetime.now() 
+                    proj_obj["captions"] = ""
+                    proj_obj.save()                
+                except ContentTooShortError:
+                    print(error)
+                    proj_obj["thumbnail_url"] = ''
+                    proj_obj['mono_link']='Error Occcured While downloading'
+                    proj_obj["updated_at"] = datetime.datetime.now() 
+                    proj_obj["captions"] = ""
+                    proj_obj.save()
         schema=ProjectSchema()
         retdata,error = schema.dump(proj_obj)
         print("im erorr",error)

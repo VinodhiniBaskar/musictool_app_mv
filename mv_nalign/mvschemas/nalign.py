@@ -131,6 +131,7 @@ class NAlignSetFactory(object):
     def create_project(self,data):
         i = 0
         proj_obj ={}
+        res =[]
         if 'db_id' in data:
             if data["db_id"]:
                 proj_obj = self.update_project(data)
@@ -155,25 +156,38 @@ class NAlignSetFactory(object):
                 video_file_name = proj_obj["db_id"]+'.mp4'
                 music_file_name_wav = proj_obj["db_id"]+'.wav'
                 prefix_folder = settings.BASE_MEDIA_PATH
+                from urllib.error import HTTPError
+
                 try:
+                    print("im herefzdfds000")
                     yt_download(proj_obj["file_url"],prefix_folder+music_file_name ,ismusic=True)
                     yt_download(proj_obj["file_url"],prefix_folder+video_file_name)
-                except ContentTooShortError:
-                    print("im heref")
-                subprocess.call(["ffmpeg", "-i",prefix_folder+music_file_name,music_file_name_wav])
-                sound = AudioSegment.from_wav(music_file_name_wav)
-                sound = sound.set_channels(1)
-                sound = sound.set_frame_rate(44100)
-                export_path = sound.export(BASE_MEDIA_PATH+music_file_name_wav, format="wav")
-                print(export_path)
+                    subprocess.call(["ffmpeg", "-i",prefix_folder+music_file_name,music_file_name_wav])
+                    sound = AudioSegment.from_wav(music_file_name_wav)
+                    sound = sound.set_channels(1)
+                    sound = sound.set_frame_rate(44100)
+                    export_path = sound.export(BASE_MEDIA_PATH+music_file_name_wav, format="wav")
+                    print(export_path)
+                    video = pafy.new(proj_obj["file_url"], basic=True)
+                    print("video thumb",video.thumb)
+                    proj_obj["thumbnail_url"] = video.thumb
+                    proj_obj['mono_link']='/static/media/'+proj_obj["db_id"]+'.wav'
+                    proj_obj["updated_at"] = datetime.datetime.now() 
+                    proj_obj["captions"] = ""
+                    proj_obj.save() 
+                    schema=ProjectSchema()
+                    retdata,error = schema.dump(proj_obj)
+                    print("im erorr",retdata)
+                    # print("im retdata",retdata)
+                    return retdata   
+                except Exception as exc:
+                    print("im heref",exc)
+                    return res
+                    # proj_obj['mono_link']='Error Occurred while downloading'
+                
+                
                 # result = BASE_MEDIA_PATH+music_file_name_wav
-                video = pafy.new(proj_obj["file_url"], basic=True)
-                print("video thumb",video.thumb)
-                proj_obj["thumbnail_url"] = video.thumb
-                proj_obj['mono_link']='/static/media/'+proj_obj["db_id"]+'.wav'
-                proj_obj["updated_at"] = datetime.datetime.now() 
-                proj_obj["captions"] = ""
-                proj_obj.save()                
+                            
             
                 # print(error)
                 # proj_obj["thumbnail_url"] = ''
@@ -181,11 +195,7 @@ class NAlignSetFactory(object):
                 # proj_obj["updated_at"] = datetime.datetime.now() 
                 # proj_obj["captions"] = ""
                 # proj_obj.save()
-        schema=ProjectSchema()
-        retdata,error = schema.dump(proj_obj)
-        print("im erorr",error)
-        # print("im retdata",retdata)
-        return retdata
+        
 
     def get_by_id(self,db_id):
         """ This gives project based on id """

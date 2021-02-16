@@ -10,8 +10,8 @@ from mv_nalign.mvexception.exception import register_error_handlers
 from flask_debugtoolbar import DebugToolbarExtension
 from werkzeug.contrib.fixers import ProxyFix
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' 
-# app = Flask(__name__, static_url_path='/static', static_folder="/home/desktop-obs-59/Projects/musictool_app_mv/mv_nalign/static")
-app = Flask(__name__, static_url_path='/static', static_folder="/DATA/PROJECTS/musiq_app/musictool_app_mv/mv_nalign/static")
+app = Flask(__name__)
+#app = Flask(__name__, static_url_path='/static', static_folder="/DATA/PROJECTS/musiq_app/musictool_app_mv/mv_nalign/static")
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
 # UPLOAD_FOLDER = 'mv_nalign/media'
@@ -42,7 +42,7 @@ def initialize_app(flask_app):
 
     configure_app(flask_app)
 
-    blueprint = Blueprint('api', __name__, url_prefix='/api/v1')
+    blueprint = Blueprint('api', __name__, url_prefix='/api/v1',static_folder='')
     api.init_app(blueprint)
     api.add_namespace(nalign_namespace)
     flask_app.register_blueprint(blueprint)

@@ -119,7 +119,7 @@ class NAlignSetFactory(object):
                 music_file_name = proj_obj["db_id"]+'.mp3'
                 video_file_name = proj_obj["db_id"]+'.mp4'
                 music_file_name_wav = proj_obj["db_id"]+'.wav'
-                prefix_folder = settings.BASE_MEDIA_PATH
+                prefix_folder = BASE_MEDIA_PATH
                 try:
                     yt_download(proj_obj["file_url"],prefix_folder+music_file_name ,ismusic=True)
                     yt_download(proj_obj["file_url"],prefix_folder+video_file_name)

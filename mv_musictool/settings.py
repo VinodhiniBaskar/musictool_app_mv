@@ -34,7 +34,8 @@ SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 MAX_IMAGE_FILE_SIZE = 16777216
-BASE_MEDIA_PATH = "mv_musictool/static/media/"
+BASE_MEDIA_PATH = "mv_musictool/static/media/" ## changed like before
+
 MEDIA_PATH="/media"
 ROLE_ARN = 'arn:aws:iam::274822417273:role/AmazonRekognitionServiceRoleCopy'
 # VIDEO_BUCKET_NAME = 'machine-vantage-inc-video'
